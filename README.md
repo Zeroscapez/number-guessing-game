@@ -9,8 +9,8 @@ A C# Console app that has you play a number guessing game, you are given 7 guess
 ## How to run
 
 ```bash
-git clone https://github.com/Zeroscapez/Old-Assignment-3.git
-cd Assignment3
+git clone https://github.com/Zeroscapez/number-guessing-game.git
+cd number-guessing-game
 dotnet run
 ```
 
