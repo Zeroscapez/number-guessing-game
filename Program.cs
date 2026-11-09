@@ -1,18 +1,15 @@
 ﻿int? bestScore = null;
-
+const int MaxGuesses = 7;
 while (true)
 {
     int randomNum = Random.Shared.Next(1, 101);
     int guessesUsed = 0;
     bool won = false;
-    const int MaxGuesses = 7;
-    int guessValue;
-
-
+    Console.WriteLine($"You have {MaxGuesses} guesses!");
     while (guessesUsed < MaxGuesses && !won)
     {
         Console.Write("Guess a number from 1 to 100: ");
-        if (!int.TryParse(Console.ReadLine(), out guessValue) || guessValue < 1 || guessValue > 100)
+        if (!int.TryParse(Console.ReadLine(), out int guessValue) || guessValue < 1 || guessValue > 100)
         {
             Console.WriteLine("Input must be a number between 1 and 100.");
         }
@@ -22,14 +19,12 @@ while (true)
             if (guessValue > randomNum)
             {
                 Console.WriteLine("Too High.");
-
-                Console.WriteLine($"Guesses Left: {MaxGuesses - guessesUsed}");
             }
             else if (guessValue < randomNum)
             {
                 Console.WriteLine("Too Low.");
 
-                Console.WriteLine($"Guesses Left: {MaxGuesses - guessesUsed}");
+
             }
             else
             {
@@ -37,13 +32,16 @@ while (true)
             }
 
         }
-
+        if (!won)
+        {
+            Console.WriteLine($"Guesses Left: {MaxGuesses - guessesUsed}");
+        }
 
     }
 
-    if (won == true)
+    if (won)
     {
-        Console.WriteLine($"It took you, {guessesUsed} guess(es).");
+        Console.WriteLine($"Correct! It took you {guessesUsed} guess(es).");
         if (bestScore == null || guessesUsed < bestScore)
         {
             bestScore = guessesUsed;
@@ -55,9 +53,9 @@ while (true)
         Console.WriteLine($"You lose, the number was {randomNum}");
     }
 
-    string? response;
-    Console.Write($"Play again? (Y/N): ");
-    response = Console.ReadLine();
+
+    Console.Write("Play again? (Y/N): ");
+    string? response = Console.ReadLine();
 
     if (response?.Trim().ToLower() != "y")
     {
@@ -69,34 +67,11 @@ while (true)
 
 if (bestScore == null)
 {
-    Console.WriteLine($"You didn't win any rounds");
+    Console.WriteLine("You didn't win any rounds");
 }
 else
 {
     Console.WriteLine($"Your least amount of guesses was: {bestScore}");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
